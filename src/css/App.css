@@ -1,0 +1,44 @@
+#root{
+    position: relative;
+    min-height: 100vh;
+}
+
+.footer{
+
+    bottom: 0;
+    border: solid 2px grey;
+    display: flex;
+    margin: 30px;
+    padding: 20px;
+}
+
+.productDiv{
+    display: flex;
+    justify-content: space-evenly;
+    width: 60rem;
+    margin: auto;
+    padding: 1rem;
+    flex-flow: row wrap;
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+.productCards{
+    display: flex;
+    width: 15rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    justify-content: end;
+    text-align: center;
+    border: solid 2px red;
+}
+
+.navbar{
+    border: solid 2px grey;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px;
+    padding: 20px;
+}
+
