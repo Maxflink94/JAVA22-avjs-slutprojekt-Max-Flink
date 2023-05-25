@@ -1,23 +1,29 @@
-export default function Product({ title, stock, price, images, setCart, inCart, setProducts, productsInStorage }) {
+export default function Product({ title, stock, price, images, setCart, setProducts, productsInStorage }) {
 
     function addToCart() {
         setCart(inCart => {
             const existingItem = inCart.find(item => item.title === title);
             if (existingItem) {
-                return inCart.map(item =>
-                    item === existingItem ? { ...item, amount: item.amount + 1 } : item
+                const newCart = inCart.map(item =>
+                    item === existingItem ? { ...item, amount : item.amount + 1 } : item
                 );
+                updateProducts(newCart);
+                return newCart;
             } else {
-                return [...inCart, { title, amount: 1, images, price }];
+                const newCart = [...inCart, { title, amount: 1, images, price }]; 
+                updateProducts(newCart);    
+                return newCart;
             }
         });
-        updateProducts();
     }
 
-    function updateProducts() {
+    function updateProducts(cart) {
         const products = productsInStorage.map(storageItem =>{
-            const cartItem = inCart.find(cartItem => cartItem.title === storageItem.title);
+            const cartItem = cart.find(cartItem => cartItem.title == storageItem.title);
+            console.log(cartItem);
             if(cartItem){
+                console.log(cartItem.amount)
+                console.log(storageItem.stock)
                 return {
                     images: storageItem.images, 
                     price: storageItem.price, 
@@ -27,13 +33,6 @@ export default function Product({ title, stock, price, images, setCart, inCart, 
             }
             return storageItem;
         })
-
-        // const newProducts = productsInStorage;
-        // inCart.forEach(cartProduct => {
-        //     newProducts.find(product => cartProduct.title == product.title).stock - cartProduct.amount;
-        //     console.log(cartProduct)
-        // });
-        console.log(products);
         setProducts(products);
     }
 
